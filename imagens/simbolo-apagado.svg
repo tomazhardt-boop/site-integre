@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 548">
+  <!-- O simbolo.svg com as cores já misturadas com o fundo da abertura (30% símbolo + 70% #162A69).
+       Fica com cara de transparente, mas é sólido: as linhas atrás não aparecem através dele.
+       Usado no celular e no tablet, onde o símbolo fica atrás do texto. -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E2E7A"/>
+      <stop offset=".26" stop-color="#312D7A"/>
+      <stop offset=".45" stop-color="#2A2F7B"/>
+      <stop offset=".65" stop-color="#1B327A"/>
+      <stop offset=".85" stop-color="#173074"/>
+      <stop offset="1" stop-color="#172E70"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#g)" d="M200 3 0 346h114zM217 0l-88 353 88 195zM0 361h115l86 187zM248 3l200 343H334zM231 0l88 353-88 195zM448 361H333l-86 187z"/>
+</svg>

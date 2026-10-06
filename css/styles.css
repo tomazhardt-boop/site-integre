@@ -1,0 +1,759 @@
+/* ============================================================
+   INTEGRE JR. — Empresa Júnior de soluções em engenharia (UFSC Blumenau)
+   Protótipo · identidade da Integre: azul-marinho, azul escuro, off-white e branco,
+   com o padrão de linhas da marca.
+   O azul elétrico e as pílulas arredondadas são do HACKATHON: só aparecem nas peças dele.
+   ============================================================ */
+
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* Marca */
+  --navy-950:  #010B2E;   /* fundo mais profundo (rodapé) */
+  --navy-900:  #061033;   /* azul-marinho principal */
+  --navy-800:  #0C1A4B;   /* cartões sobre o marinho */
+  --navy-700:  #152766;
+  --ink:       #03103A;   /* títulos sobre fundo claro */
+  --azul:      #2645A0;   /* azul da marca, mais escuro (base do símbolo) — destaques */
+  --azul-luz:  rgba(38, 69, 160, .5);   /* brilho de fundo nas seções escuras */
+  --offwhite:  #F3F4F7;
+  --purple:    #6637A1;   /* roxo do símbolo — só detalhe */
+
+  /* Eventos: cada um tem a própria identidade (prints em "Logos e imagens para se basear/IDV eventos") */
+  --hack-azul: #2179FF;          /* Hackathon */
+  --agasalho-navy: #13215F;      /* Campanha do Agasalho */
+  --agasalho-azul: rgba(110, 190, 235, .75);
+  --talks-navy: #0D1A57;         /* Integre Talks */
+  --font-agasalho: 'Anton', 'Poppins', sans-serif;
+  --font-agasalho-script: 'Caveat Brush', cursive;
+
+  /* Neutros */
+  --bg:        #F4F5F8;
+  --bg-2:      #E6E8EE;
+  --surface:   #FFFFFF;
+  --text:      #1E2A4F;
+  --muted:     #58627F;
+  --muted-dark:#AEB9DA;   /* texto secundário sobre o marinho */
+  --line:      #DCE0EA;
+  --line-dark: rgba(255, 255, 255, .13);
+  --danger:    #E5484D;
+
+  /* Tipografia */
+  --font-display: 'Michroma', 'Poppins', system-ui, sans-serif;
+  --font-body:    'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Geometria */
+  --r-btn:  10px;   /* botões e etiquetas da Integre (pílula é do Hackathon) */
+  --r-sm:   12px;
+  --r:      20px;
+  --r-lg:   28px;
+  --r-pill: 999px;  /* só Hackathon */
+  --container: 1200px;
+  --gutter:    24px;
+  --header-h:  76px;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 10px rgba(6, 16, 51, .06);
+  --shadow-md: 0 16px 36px rgba(6, 16, 51, .12);
+  --shadow-lg: 0 28px 64px rgba(6, 16, 51, .22);
+
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* ============================================================
+   2. RESET / BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 12px);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4, p, ul, figure { margin: 0; }
+ul { padding: 0; list-style: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+input, select, textarea { min-width: 0; }
+/* Ícones do sprite: fill/stroke do <symbol> não são herdados pelo <use>, por isso ficam aqui. */
+svg.icon {
+  width: 1.25em; height: 1.25em; flex-shrink: 0;
+  fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+:focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; border-radius: 6px; }
+.secao--escura :focus-visible, .header :focus-visible, .mobile-nav :focus-visible, .rodape :focus-visible { outline-color: #fff; }
+.form :focus-visible { outline-color: var(--azul); }
+.sr-only, .js .vitrine__nome {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ============================================================
+   3. LAYOUT / SEÇÕES
+   ============================================================ */
+.container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+
+.secao { position: relative; padding: clamp(72px, 9vw, 120px) 0; overflow: hidden; }
+.secao > .container { position: relative; z-index: 1; }
+/* --tinta = cor dos títulos e do contorno em cada tipo de fundo */
+.secao--escura { --tinta: #fff; background: var(--navy-900); color: #D6DDF2; }
+.secao--clara  { --tinta: var(--ink); background: linear-gradient(180deg, var(--bg), var(--bg-2)); color: var(--text); }
+.secao--branca { --tinta: var(--ink); background: var(--surface); color: var(--text); }
+
+.secao__cabeca { text-align: center; max-width: 760px; margin: 0 auto clamp(40px, 5vw, 64px); }
+.secao__cabeca .lead { margin: 18px auto 0; }
+.secao__rodape { text-align: center; margin-top: clamp(36px, 4vw, 52px); }
+
+/* Padrão de linhas da Integre (imagens/linhas-*.png, gerado do arquivo enviado pela Integre).
+   Na orientação original os cortes ficam à direita e embaixo; os modificadores espelham. */
+.deco-linhas {
+  position: absolute; z-index: 0; pointer-events: none;
+  width: min(520px, 62vw); aspect-ratio: 637 / 751;
+  background: url(../imagens/linhas-claras.png) no-repeat center / contain;
+  opacity: .38;
+}
+.secao--clara .deco-linhas,
+.secao--branca .deco-linhas { background-image: url(../imagens/linhas-escuras.png); opacity: .7; }
+.deco-linhas--br { right: 0; bottom: 0; }
+.deco-linhas--tr { right: 0; top: 0; transform: scaleY(-1); }
+.deco-linhas--bl { left: 0; bottom: 0; transform: scaleX(-1); }
+
+.deco-pontos {
+  position: absolute; z-index: 0; pointer-events: none;
+  width: 160px; height: 160px; color: #fff; opacity: .3;
+  background-image: radial-gradient(currentColor 1.6px, transparent 1.9px);
+  background-size: 14px 14px;
+  -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 70%);
+          mask-image: radial-gradient(circle, #000 25%, transparent 70%);
+}
+.secao--clara .deco-pontos, .secao--branca .deco-pontos { color: var(--navy-900); opacity: .22; }
+
+/* ============================================================
+   4. TIPOGRAFIA
+   ============================================================ */
+/* Rótulo em fonte larga ("INTEGRE JR." / "Quem somos") com traço — no lugar das pílulas */
+.selo {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-display); font-size: .72rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--muted-dark);
+}
+.selo::before { content: ''; width: 28px; height: 2px; border-radius: 2px; background: currentColor; }
+.secao__cabeca .selo::after { content: ''; width: 28px; height: 2px; border-radius: 2px; background: currentColor; }
+.secao--clara .selo, .secao--branca .selo { color: var(--azul); }
+
+/* Pílula azul-elétrico: identidade do Hackathon, só nas peças dele */
+.pilula-hack {
+  display: inline-block; padding: 7px 18px; border-radius: var(--r-pill);
+  background: var(--hack-azul); color: #fff; font-weight: 600; font-size: .9rem; line-height: 1.3;
+}
+
+.titulo {
+  margin-top: 16px; color: var(--tinta);
+  font-weight: 900; text-transform: uppercase; letter-spacing: -.01em;
+  font-size: clamp(2rem, 4.4vw, 3.5rem); line-height: 1.02;
+}
+/* Letra só de contorno, misturada com letra cheia na mesma frase */
+.contorno { color: transparent; -webkit-text-stroke: 2px var(--tinta); }
+@supports not (-webkit-text-stroke: 1px #000) { .contorno { color: var(--tinta); } }
+
+/* Título embaralhado ([data-embaralhar], main.js): só existe durante a animação. Cada letra numa
+   caixa com a largura da letra final; a palavra não quebra no meio. */
+.embaralha__palavra { white-space: nowrap; }
+.embaralha__letra { display: inline-block; text-align: center; }
+
+.lead { font-size: 1.08rem; color: var(--muted); max-width: 58ch; }
+.secao--escura .lead { color: var(--muted-dark); }
+
+/* ============================================================
+   5. BOTÕES (sem brilho; cantos levemente arredondados)
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px 26px; border-radius: var(--r-btn); border: 2px solid transparent;
+  font-weight: 700; font-size: 1rem; line-height: 1.2; white-space: nowrap; cursor: pointer;
+  transition: transform .2s var(--ease), background .2s, border-color .2s, color .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+/* Principal: off-white no fundo escuro (padrão), marinho no fundo claro e no formulário */
+.btn--primario { background: var(--offwhite); color: var(--navy-900); }
+.btn--primario:hover { background: #fff; }
+.secao--clara .btn--primario, .secao--branca .btn--primario, .form .btn--primario { background: var(--navy-900); color: #fff; }
+.secao--clara .btn--primario:hover, .secao--branca .btn--primario:hover, .form .btn--primario:hover { background: var(--azul); }
+.btn--contorno { border-color: rgba(255, 255, 255, .42); color: #fff; }
+.btn--contorno:hover { border-color: #fff; background: rgba(255, 255, 255, .07); }
+.secao--clara .btn--contorno, .secao--branca .btn--contorno { border-color: var(--ink); color: var(--ink); }
+.btn--sm { padding: 10px 20px; font-size: .92rem; }
+
+/* ============================================================
+   6. HEADER + MENU MOBILE
+   ============================================================ */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(6, 16, 51, .94);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+          backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s, box-shadow .3s;
+}
+.header.is-scrolled { border-bottom-color: var(--line-dark); box-shadow: 0 10px 30px rgba(1, 11, 46, .35); }
+.header__inner { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: inline-flex; align-items: center; }
+.brand img { height: 44px; width: auto; }
+.header__direita { display: flex; align-items: center; gap: 10px; }
+.nav { display: flex; align-items: center; gap: 4px; }
+.nav a {
+  padding: 10px 16px; border-radius: var(--r-btn);
+  color: #D3DBF3; font-weight: 600; font-size: .95rem;
+  transition: color .2s, background .2s;
+}
+.nav a:hover { color: #fff; background: rgba(255, 255, 255, .07); }
+.nav a.is-active { color: #fff; background: rgba(255, 255, 255, .11); }
+.header__cta { margin-left: 8px; }
+
+.menu-btn {
+  display: none; width: 46px; height: 46px; border-radius: var(--r-btn); cursor: pointer;
+  place-items: center; color: #fff; background: rgba(255, 255, 255, .07);
+  border: 1px solid var(--line-dark);
+}
+.menu-btn .icon { width: 24px; height: 24px; }
+
+.mobile-nav { position: fixed; inset: 0; z-index: 100; visibility: hidden; transition: visibility 0s .35s; }
+.mobile-nav.is-open { visibility: visible; transition: visibility 0s; }
+.mobile-nav__scrim { position: absolute; inset: 0; background: rgba(1, 11, 46, .6); opacity: 0; transition: opacity .35s; }
+.mobile-nav.is-open .mobile-nav__scrim { opacity: 1; }
+.mobile-nav__painel {
+  position: absolute; top: 0; right: 0; bottom: 0; width: min(360px, 88vw);
+  display: flex; flex-direction: column; gap: 28px; padding: 18px 24px 28px;
+  background: var(--navy-900); color: #fff; box-shadow: var(--shadow-lg);
+  transform: translateX(100%); transition: transform .35s var(--ease);
+}
+.mobile-nav.is-open .mobile-nav__painel { transform: none; }
+.mobile-nav__topo { display: flex; align-items: center; justify-content: space-between; }
+.mobile-nav__topo img { height: 32px; width: auto; }
+.mobile-nav__topo .menu-btn { display: grid; }
+.mobile-nav__links { display: grid; gap: 4px; }
+.mobile-nav__links a {
+  padding: 14px 16px; border-radius: var(--r-btn); font-weight: 700; font-size: 1.08rem;
+  color: #D3DBF3; border: 1px solid transparent;
+}
+.mobile-nav__links a:hover, .mobile-nav__links a.is-active { color: #fff; background: rgba(255, 255, 255, .06); border-color: var(--line-dark); }
+.mobile-nav__painel .btn { margin-top: auto; }
+
+/* ============================================================
+   7. HERO (HOME)
+   ============================================================ */
+.hero {
+  padding: clamp(28px, 4vw, 56px) 0 0;
+  background:
+    radial-gradient(55% 65% at 78% 42%, var(--azul-luz), transparent 70%),
+    radial-gradient(45% 55% at 6% 100%, rgba(102, 55, 161, .26), transparent 70%),
+    linear-gradient(180deg, var(--navy-900), var(--navy-950));
+}
+.hero__grid { display: grid; grid-template-columns: 1.08fr .92fr; align-items: end; gap: 32px; }
+.hero__texto { padding-bottom: clamp(36px, 5vw, 72px); }
+.hero__marca { margin-top: 20px; }
+.hero__marca img { width: min(440px, 100%); }
+.hero__frase {
+  margin-top: 22px; color: #fff;
+  font-weight: 900; text-transform: uppercase; letter-spacing: -.01em;
+  font-size: clamp(1.9rem, 4vw, 3.2rem); line-height: 1.05;
+}
+.hero__frase .contorno { display: block; }
+.hero__lead { margin-top: 18px; max-width: 46ch; }
+.hero__acoes { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 14px; }
+
+.hero__visual { position: relative; display: flex; justify-content: center; align-items: flex-end; height: 100%; }
+.hero__simbolo {
+  position: absolute; left: 50%; top: 4%; width: 86%; max-width: 500px;
+  transform: translateX(-50%); opacity: .26;
+}
+.hero__mascote {
+  position: relative; z-index: 1; width: auto; max-width: 100%;
+  height: clamp(380px, 42vw, 580px); object-fit: contain; object-position: bottom;
+  filter: drop-shadow(0 26px 34px rgba(1, 11, 46, .55));
+}
+.hero__chip {
+  position: absolute; z-index: 2; display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: var(--r-btn);
+  background: var(--offwhite); color: var(--ink);
+  font-weight: 700; font-size: .85rem; box-shadow: var(--shadow-md);
+  animation: flutua 6s ease-in-out infinite;
+}
+.hero__chip::before { content: ''; width: 8px; height: 8px; border-radius: 2px; background: var(--azul); transform: rotate(45deg); }
+.hero__chip--1 { top: 14%; left: 0; }
+.hero__chip--2 { top: 40%; right: 0; animation-delay: -2s; }
+.hero__chip--3 { bottom: 16%; left: 4%; animation-delay: -4s; }
+@keyframes flutua { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* ============================================================
+   8. SOLUÇÕES (cards)
+   ============================================================ */
+.solucoes__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.card-solucao {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: flex; flex-direction: column; gap: 12px; padding: 30px 28px 26px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s var(--ease), box-shadow .25s, border-color .25s;
+}
+.card-solucao::after {   /* faceta do símbolo no canto */
+  content: ''; position: absolute; z-index: -1; right: -26px; top: -30px; width: 116px; height: 140px;
+  background: url(../imagens/simbolo.svg) no-repeat center / contain;
+  opacity: .07; transform: rotate(16deg); transition: opacity .25s;
+}
+.card-solucao:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: rgba(38, 69, 160, .45); }
+.card-solucao:hover::after { opacity: .16; }
+.card-solucao__icone {
+  width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center;
+  background: var(--navy-900); color: #fff; transition: background .25s;
+}
+.card-solucao:hover .card-solucao__icone { background: var(--azul); }
+.card-solucao__icone .icon { width: 26px; height: 26px; }
+.card-solucao h3 { margin-top: 6px; font-size: 1.18rem; font-weight: 800; line-height: 1.25; color: var(--ink); }
+.card-solucao p { font-size: .97rem; color: var(--muted); }
+.mais {
+  margin-top: auto; padding-top: 6px; display: inline-flex; align-items: center;
+  color: var(--azul); font-weight: 700; font-size: .92rem;
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px;
+  transition: text-decoration-color .2s;
+}
+a:hover > .mais, a:hover > * > .mais { text-decoration-color: currentColor; }
+
+/* ============================================================
+   9. QUEM SOMOS
+   ============================================================ */
+.quem {
+  padding-bottom: 0;
+  background:
+    radial-gradient(45% 60% at 22% 70%, var(--azul-luz), transparent 70%),
+    var(--navy-900);
+}
+.quem__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 5vw, 72px); align-items: end; }
+.quem__visual { position: relative; display: flex; justify-content: center; align-items: flex-end; }
+.quem__visual .mascote {
+  position: relative; z-index: 1; width: auto; max-width: 100%;
+  height: clamp(360px, 40vw, 540px); object-fit: contain; object-position: bottom;
+  filter: drop-shadow(0 26px 34px rgba(1, 11, 46, .6));
+}
+.quem__simbolo {
+  position: absolute; left: 50%; bottom: 8%; width: 80%; max-width: 420px;
+  transform: translateX(-50%); opacity: .2;
+}
+.quem__anos {
+  position: absolute; z-index: 2; right: 4%; top: 12%;
+  width: 128px; height: 128px; border-radius: 50%;
+  display: grid; place-content: center; text-align: center;
+  background: var(--offwhite); color: var(--navy-900); transform: rotate(-8deg);
+}
+.quem__anos strong { font-family: var(--font-display); font-size: 2.1rem; line-height: 1; }
+.quem__anos span { margin-top: 6px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; line-height: 1.25; }
+.quem__texto { padding-bottom: clamp(72px, 9vw, 120px); }
+.quem__texto p { margin-top: 20px; font-size: 1.06rem; color: var(--muted-dark); max-width: 58ch; }
+/* Números soltos, sem caixa */
+.numeros { display: flex; flex-wrap: wrap; gap: 16px clamp(32px, 5vw, 56px); margin: 32px 0 36px; }
+.numeros strong { display: block; font-family: var(--font-display); font-size: 1.9rem; line-height: 1.15; color: #fff; }
+.numeros span { font-size: .88rem; color: var(--muted-dark); }
+
+/* ============================================================
+   10. EVENTOS (cards com capa no estilo dos posts)
+   ============================================================ */
+.eventos__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.evento {
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm); transition: transform .25s var(--ease), box-shadow .25s;
+}
+.evento:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.evento__corpo { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 24px 26px 26px; }
+.evento__corpo h3 { font-size: 1.2rem; font-weight: 800; color: var(--ink); }
+.evento__corpo p { font-size: .97rem; color: var(--muted); }
+
+.capa {
+  position: relative; overflow: hidden; isolation: isolate;
+  aspect-ratio: 4 / 3.3; padding: 28px 24px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+}
+/* Cada capa segue a identidade do próprio evento (não a da Integre). */
+.capa__selo { position: absolute; top: 16px; left: 0; right: 0; font-family: var(--font-display); font-size: .6rem; letter-spacing: .3em; opacity: .85; }
+.capa__titulo { font-weight: 900; text-transform: uppercase; line-height: 1; font-size: clamp(2rem, 3.4vw, 2.6rem); letter-spacing: .01em; }
+.capa__titulo small { display: block; margin-bottom: 6px; font-size: .42em; font-weight: 700; font-style: italic; text-transform: none; letter-spacing: 0; }
+.capa__titulo--display { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 2.7vw, 2.05rem); line-height: 1.12; }
+.capa__pilula { margin-top: 16px; font-weight: 600; font-size: .86rem; opacity: .9; }
+
+/* Hackathon: única capa com azul elétrico e pílula */
+.capa-hackathon {
+  --tinta: #fff; color: #fff;
+  background:
+    radial-gradient(70% 60% at 50% 45%, rgba(33, 121, 255, .5), transparent 70%),
+    linear-gradient(160deg, var(--navy-800), var(--navy-950));
+}
+.capa-hackathon .capa__pilula {
+  margin-top: 18px; padding: 7px 16px; border-radius: var(--r-pill);
+  background: var(--hack-azul); color: #fff; font-weight: 700; font-size: .82rem; opacity: 1;
+}
+/* Integre Talks: marinho com textura de pincel, grade de pontos nos cantos, título largo com sombra deslocada */
+.capa-talks {
+  color: #fff;
+  background:
+    radial-gradient(38% 30% at 62% 38%, rgba(92, 110, 175, .38), transparent 70%),
+    radial-gradient(30% 26% at 32% 62%, rgba(92, 110, 175, .28), transparent 70%),
+    radial-gradient(26% 22% at 74% 70%, rgba(92, 110, 175, .22), transparent 70%),
+    var(--talks-navy);
+}
+.capa-talks::after {
+  content: ''; position: absolute; z-index: -1; inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, .6) 1.4px, transparent 1.8px);
+  background-size: 12px 12px;
+  -webkit-mask-image: radial-gradient(30% 36% at 0 0, #000 30%, transparent 75%), radial-gradient(30% 36% at 100% 100%, #000 30%, transparent 75%);
+          mask-image: radial-gradient(30% 36% at 0 0, #000 30%, transparent 75%), radial-gradient(30% 36% at 100% 100%, #000 30%, transparent 75%);
+}
+.capa-talks .capa__titulo--display { text-shadow: 3px 3px 0 rgba(150, 162, 200, .55); letter-spacing: .04em; }
+.capa-talks .capa__pilula { text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+
+/* Campanha do Agasalho (versão clara): off-white, cantos azul-claros, flocos de neve,
+   "campanha do" em pincel e AGASALHO em condensada pesada, tudo em marinho */
+.capa-agasalho {
+  color: var(--agasalho-navy);
+  background:
+    url(../imagens/floco.svg) 13% 24% / 34px no-repeat,
+    url(../imagens/floco.svg) 86% 17% / 26px no-repeat,
+    url(../imagens/floco.svg) 90% 90% / 40px no-repeat,
+    url(../imagens/floco.svg) 16% 82% / 24px no-repeat,
+    url(../imagens/floco.svg) 56% 90% / 18px no-repeat,
+    url(../imagens/floco.svg) 38% 11% / 16px no-repeat,
+    url(../imagens/floco.svg) 70% 36% / 14px no-repeat,
+    radial-gradient(48% 55% at 0 0, var(--agasalho-azul), transparent 70%),
+    radial-gradient(48% 55% at 100% 100%, var(--agasalho-azul), transparent 70%),
+    #EEF0F3;
+}
+.capa-agasalho .capa__titulo { font-family: var(--font-agasalho); font-weight: 400; letter-spacing: .01em; line-height: .95; font-size: clamp(2.6rem, 4.4vw, 3.4rem); }
+.capa-agasalho .capa__titulo small {
+  margin-bottom: 0; font-family: var(--font-agasalho-script); font-weight: 400; font-style: normal;
+  font-size: .5em; text-transform: lowercase; line-height: 1.1;
+}
+.capa-agasalho .capa__pilula { font-weight: 500; opacity: 1; }
+
+/* ============================================================
+   11. CONTATO + FORMULÁRIO + REDES
+   ============================================================ */
+.contato {
+  background:
+    radial-gradient(50% 60% at 88% 18%, var(--azul-luz), transparent 70%),
+    radial-gradient(40% 50% at 0% 100%, rgba(102, 55, 161, .22), transparent 70%),
+    var(--navy-900);
+}
+.contato__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+.contato__texto p { margin-top: 20px; }
+.contato__lista { margin-top: 32px; display: grid; gap: 14px; }
+.contato__lista li { display: flex; align-items: center; gap: 14px; color: #fff; font-weight: 600; }
+.contato__lista a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.contato__lista small { display: block; font-size: .78rem; font-weight: 500; color: var(--muted-dark); }
+.icone-caixa {
+  width: 46px; height: 46px; border-radius: var(--r-btn); flex-shrink: 0; display: grid; place-items: center;
+  color: var(--offwhite); background: rgba(255, 255, 255, .06); border: 1px solid var(--line-dark);
+}
+
+.form { background: var(--surface); color: var(--text); border-radius: var(--r-lg); padding: clamp(24px, 3.5vw, 40px); box-shadow: var(--shadow-lg); }
+.form__titulo { font-size: 1.25rem; font-weight: 800; color: var(--ink); margin-bottom: 20px; }
+.form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.campo { display: flex; flex-direction: column; gap: 7px; }
+.campo--cheio { grid-column: 1 / -1; }
+.campo label { font-size: .86rem; font-weight: 700; color: var(--ink); }
+.campo label small { font-weight: 500; color: var(--muted); }
+.campo input, .campo select, .campo textarea {
+  width: 100%; padding: 13px 15px; border-radius: var(--r-sm);
+  border: 1.5px solid var(--line); background: #F7F8FB;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.campo textarea { min-height: 130px; resize: vertical; }
+.campo input:focus, .campo select:focus, .campo textarea:focus {
+  outline: none; border-color: var(--azul); background: #fff; box-shadow: 0 0 0 4px rgba(38, 69, 160, .14);
+}
+.campo.is-invalid input, .campo.is-invalid select, .campo.is-invalid textarea { border-color: var(--danger); }
+.form__acoes { margin-top: 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.form__nota { font-size: .82rem; color: var(--muted); }
+.form-sucesso { text-align: center; padding: 28px 8px; }
+.form-sucesso .icone-caixa { margin: 0 auto 18px; width: 64px; height: 64px; color: #fff; background: var(--navy-900); border: 0; }
+.form-sucesso .icone-caixa .icon { width: 30px; height: 30px; }
+.form-sucesso h3 { font-size: 1.3rem; font-weight: 800; color: var(--ink); }
+.form-sucesso p { margin-top: 8px; color: var(--muted); }
+
+.redes {
+  margin-top: clamp(48px, 6vw, 72px); padding-top: 32px; border-top: 1px solid var(--line-dark);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.redes__titulo { font-family: var(--font-display); font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: #fff; }
+.redes__lista { display: flex; flex-wrap: wrap; gap: 12px; }
+.rede {
+  display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 12px;
+  border-radius: var(--r-btn); border: 1px solid var(--line-dark); background: rgba(255, 255, 255, .04);
+  color: #fff; font-weight: 600; font-size: .93rem; transition: background .2s, border-color .2s, color .2s, transform .2s var(--ease);
+}
+.rede:hover { background: var(--offwhite); border-color: var(--offwhite); color: var(--navy-900); transform: translateY(-2px); }
+.rede .icon { width: 20px; height: 20px; }
+
+/* ============================================================
+   12. RODAPÉ
+   ============================================================ */
+.rodape { position: relative; overflow: hidden; padding-top: 64px; background: var(--navy-950); color: var(--muted-dark); font-size: .95rem; }
+.rodape__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.4fr 1fr 1.3fr 1fr; gap: 40px; padding-bottom: 48px; }
+.rodape__marca img { height: 44px; width: auto; }
+.rodape__marca p { margin-top: 18px; max-width: 34ch; }
+.rodape h4 { margin-bottom: 18px; font-family: var(--font-display); font-weight: 400; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: #fff; }
+.rodape__links { display: grid; gap: 10px; }
+.rodape__links a:hover, .rodape__contato a:hover { color: #fff; }
+.rodape__contato { display: grid; gap: 12px; }
+.rodape__contato li { display: flex; align-items: flex-start; gap: 10px; }
+.rodape__contato .icon { margin-top: 3px; color: var(--offwhite); }
+.rodape__redes { display: flex; gap: 10px; }
+.rodape__redes a {
+  width: 42px; height: 42px; border-radius: var(--r-btn); display: grid; place-items: center;
+  color: #fff; border: 1px solid var(--line-dark); transition: background .2s, border-color .2s, color .2s;
+}
+.rodape__redes a:hover { background: var(--offwhite); border-color: var(--offwhite); color: var(--navy-900); }
+.rodape__base {
+  position: relative; z-index: 1; border-top: 1px solid var(--line-dark); padding: 22px 0;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .85rem;
+}
+
+/* ============================================================
+   13. PÁGINAS INTERNAS (Sobre, Soluções, Eventos)
+   ============================================================ */
+.pagina-hero {
+  padding: clamp(56px, 8vw, 104px) 0 clamp(56px, 7vw, 92px);
+  background:
+    radial-gradient(50% 70% at 82% 50%, var(--azul-luz), transparent 70%),
+    linear-gradient(180deg, var(--navy-900), var(--navy-950));
+}
+.pagina-hero__inner { max-width: 760px; }
+.pagina-hero h1 {
+  margin-top: 18px; color: #fff; font-weight: 900; text-transform: uppercase; letter-spacing: -.01em;
+  font-size: clamp(2.2rem, 5.4vw, 4rem); line-height: 1.02;
+}
+.pagina-hero .lead { margin-top: 20px; }
+.pagina-hero__simbolo {
+  position: absolute; z-index: 0; top: 50%; right: max(var(--gutter), calc((100vw - var(--container)) / 2));
+  width: clamp(150px, 20vw, 280px); transform: translateY(-50%);
+  filter: brightness(.85);   /* escurece sem transparência: com opacity, as linhas atrás apareciam através dele */
+}
+.aviso-prototipo {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 8px 16px;
+  border-radius: var(--r-btn); border: 1px dashed rgba(255, 255, 255, .3); background: rgba(255, 255, 255, .05);
+  font-size: .85rem; color: var(--muted-dark);
+}
+.atalhos { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+.atalhos a {
+  padding: 8px 16px; border-radius: var(--r-btn); border: 1px solid var(--line-dark);
+  color: #fff; font-weight: 600; font-size: .88rem; transition: background .2s, border-color .2s, color .2s;
+}
+.atalhos a:hover { background: var(--offwhite); border-color: var(--offwhite); color: var(--navy-900); }
+
+.bloco {
+  display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(28px, 5vw, 64px);
+  padding: clamp(44px, 6vw, 76px) 0; border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--header-h) + 8px);
+}
+.bloco:first-child { padding-top: 0; }
+.bloco:last-child { border-bottom: 0; padding-bottom: 0; }
+.bloco--invertido .bloco__midia { order: -1; }
+.bloco__icone {
+  width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center;
+  background: var(--navy-900); color: #fff;
+}
+.bloco__icone .icon { width: 24px; height: 24px; }
+.bloco__texto h2 {
+  margin-top: 18px; color: var(--ink); font-weight: 900; text-transform: uppercase; letter-spacing: -.01em;
+  font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.08;
+}
+.bloco__texto > p { margin-top: 16px; color: var(--muted); }
+.planejado { margin-top: 22px; display: grid; gap: 10px; }
+.planejado li { display: flex; align-items: flex-start; gap: 12px; }
+.planejado .icon { margin-top: 3px; color: var(--azul); }
+.planejado em { color: var(--muted); }
+.bloco__midia {
+  position: relative; overflow: hidden; isolation: isolate; aspect-ratio: 4 / 3; border-radius: var(--r-lg);
+  display: grid; place-items: center; align-content: center; gap: 12px; text-align: center;
+  color: var(--muted-dark); background: linear-gradient(160deg, var(--navy-800), var(--navy-950));
+  box-shadow: var(--shadow-md);
+}
+.bloco__midia::before {
+  content: ''; position: absolute; z-index: -1; right: 0; bottom: 0; width: 56%; aspect-ratio: 637 / 751;
+  background: url(../imagens/linhas-claras.png) no-repeat right bottom / contain; opacity: .35;
+}
+.bloco__midia .icon { width: 40px; height: 40px; stroke-width: 1.5; }
+.bloco__midia span { font-family: var(--font-display); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; }
+/* Capa de evento no lugar da imagem do bloco */
+.bloco__capa { aspect-ratio: 4 / 3; border-radius: var(--r-lg); box-shadow: var(--shadow-md); }
+.bloco--invertido .bloco__capa { order: -1; }
+.bloco__capa .capa__titulo { font-size: clamp(2.4rem, 5vw, 3.6rem); }
+.bloco__capa .capa__titulo--display { font-size: clamp(1.9rem, 3.8vw, 2.8rem); }
+
+/* Vitrine das soluções: os itens rolam à esquerda e o nome gira letra a letra no painel fixo à
+   direita (no celular, numa faixa presa embaixo do header). O painel só aparece com JS. */
+.vitrine {
+  overflow: clip;   /* overflow: hidden quebraria o position: sticky */
+  --respiro: clamp(96px, 20vh, 200px);   /* espaço acima e abaixo de cada solução */
+}
+.vitrine__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); column-gap: clamp(40px, 6vw, 96px); }
+.vitrine__itens { grid-column: 1; grid-row: 1; container-type: inline-size; }
+html:not(.js) .vitrine__itens { grid-column: 1 / -1; width: min(100%, 640px); margin-inline: auto; }
+.vitrine__fixo { display: none; }
+.js .vitrine__fixo {
+  grid-column: 2; grid-row: 1; align-self: start;
+  position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h));
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+}
+.vitrine__titulo {
+  margin-top: 20px; color: var(--tinta); font-weight: 900; text-transform: uppercase; letter-spacing: -.01em;
+  font-size: clamp(2rem, 3.8vw, 3.5rem); line-height: 1.05;
+}
+.vitrine__contador { display: inline-flex; gap: .6em; color: var(--ink); }
+.vitrine__barra { margin-top: 32px; display: flex; gap: 6px; }
+.vitrine__barra i { width: 34px; height: 4px; border-radius: 2px; background: var(--line); transition: background .3s; }
+.vitrine__barra i.is-feito { background: var(--azul); }
+
+.vitrine__item { display: grid; gap: 26px; padding: var(--respiro) 0; border-bottom: 1px solid var(--line); }
+.vitrine__item:first-child { padding-top: 0; }
+.vitrine__item:last-child { padding-bottom: 0; border-bottom: 0; }
+/* No computador, com o painel: o 1º item começa com a imagem (4/3 da largura = 75cqw de altura)
+   centrada na altura do nome do painel, e o último termina com respiro, para o painel não se
+   soltar antes de a última imagem passar pelo meio da tela. */
+@media (min-width: 961px) {
+  .js .vitrine { padding-block: 0; }
+  .js .vitrine__item:first-child { padding-top: max(32px, calc((100vh - var(--header-h)) / 2 - 37.5cqw)); }
+  .js .vitrine__item:last-child { padding-bottom: var(--respiro); }
+}
+.vitrine__icone {
+  position: absolute; top: 18px; left: 18px; width: 48px; height: 48px; border-radius: 14px;
+  display: grid; place-items: center; background: var(--offwhite); color: var(--navy-900);
+}
+.vitrine__icone .icon { width: 22px; height: 22px; stroke-width: 2; }
+.vitrine__nome { margin-bottom: 14px; color: var(--ink); font-weight: 900; text-transform: uppercase; font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.1; }
+.vitrine__texto > p { color: var(--muted); }
+.vitrine__texto .planejado { margin-top: 18px; }
+
+/* Texto que gira (versão sem React do TextRotate): cada palavra é uma máscara e cada letra
+   sobe com um pequeno atraso em relação à anterior (--i, posto pelo main.js). */
+.giro__linha { display: flex; flex-wrap: wrap; column-gap: .26em; }
+.giro__palavra { display: inline-flex; overflow: hidden; padding: .16em .05em .12em; margin: -.16em -.05em -.12em; }
+.giro__letra {
+  display: inline-block;
+  transition: transform .6s var(--ease), opacity .6s var(--ease);
+  transition-delay: calc(var(--i) * 12ms);
+}
+.is-entrando .giro__letra { transform: translateY(110%); opacity: 0; }
+.is-saindo .giro__letra { transform: translateY(-120%); opacity: 0; transition-duration: .35s; }
+
+.cta-final .secao__cabeca { margin-bottom: 0; }
+.cta-final .btn { margin-top: 30px; }
+
+.pilares { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.pilar { padding: 30px 28px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+.pilar h3 { margin-top: 16px; font-size: 1.15rem; font-weight: 800; color: var(--ink); }
+.pilar p { margin-top: 8px; color: var(--muted); font-size: .97rem; }
+
+/* ============================================================
+   14. TROCA DE MASCOTE (só no protótipo)
+   ============================================================ */
+.troca-mascote {
+  margin-top: 22px; width: fit-content; max-width: 100%;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 4px; padding: 5px 5px 5px 16px;
+  border-radius: var(--r-btn); border: 1px dashed rgba(255, 255, 255, .28);
+  background: rgba(255, 255, 255, .05); font-size: .8rem; color: #fff;
+}
+.troca-mascote__rotulo { margin-right: 8px; font-weight: 700; line-height: 1.15; }
+.troca-mascote__rotulo small { display: block; font-size: .66rem; font-weight: 500; color: var(--muted-dark); }
+.troca-mascote button {
+  padding: 8px 14px; border: 0; border-radius: 7px; background: transparent;
+  font-weight: 700; color: var(--muted-dark); cursor: pointer; transition: background .2s, color .2s;
+}
+.troca-mascote button:hover { color: #fff; background: rgba(255, 255, 255, .08); }
+.troca-mascote button[aria-pressed="true"] { background: var(--offwhite); color: var(--ink); }
+
+/* ============================================================
+   15. ANIMAÇÃO DE ENTRADA
+   Só esconde quando <html class="js"> (script inline no <head>): sem JS tudo aparece.
+   ============================================================ */
+.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js .reveal.is-in { opacity: 1; transform: none; }
+.js .reveal[data-delay="1"] { transition-delay: .08s; }
+.js .reveal[data-delay="2"] { transition-delay: .16s; }
+.js .reveal[data-delay="3"] { transition-delay: .24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   16. RESPONSIVO (desktop-first)
+   ============================================================ */
+@media (max-width: 1080px) {
+  .nav, .header__cta { display: none; }
+  .menu-btn { display: grid; }
+}
+
+@media (max-width: 960px) {
+  .hero__grid, .quem__grid, .contato__grid { grid-template-columns: 1fr; }
+  .hero__texto { padding-bottom: 8px; }
+  .hero__visual { min-height: 0; }
+  .hero__mascote { height: clamp(340px, 62vw, 460px); }
+  .hero__simbolo { width: min(78%, 420px); }
+  .quem__visual { order: 2; }
+  .quem__texto { padding-bottom: 8px; }
+  .quem__visual .mascote { height: clamp(320px, 60vw, 440px); }
+  .solucoes__grid, .eventos__grid, .pilares { grid-template-columns: repeat(2, 1fr); }
+  .rodape__grid { grid-template-columns: 1fr 1fr; }
+  .bloco { grid-template-columns: 1fr; }
+  .bloco--invertido .bloco__midia, .bloco--invertido .bloco__capa { order: 0; }
+  .pagina-hero__simbolo { filter: none; }   /* troca pelo simbolo-apagado.svg (<picture>): fica atrás do texto */
+  /* Vitrine: o painel vira uma faixa presa embaixo do header. Sem grid aqui, porque a área de
+     grid seria o limite do sticky e a faixa não teria por onde descer. */
+  .vitrine { --respiro: clamp(64px, 12vh, 120px); }
+  .vitrine__grid { display: block; }
+  .js .vitrine__fixo {
+    z-index: 2; height: auto; margin: 0 calc(-1 * var(--gutter)) 12px; padding: 14px var(--gutter) 16px;
+    display: grid; grid-template-columns: auto 1fr; grid-template-areas: "selo barra" "titulo titulo";
+    justify-content: normal; align-items: center; gap: 10px 18px;
+    background: var(--surface); border-bottom: 1px solid var(--line);
+  }
+  .vitrine__fixo .selo { grid-area: selo; white-space: nowrap; }
+  .vitrine__barra { grid-area: barra; justify-self: end; width: 100%; max-width: 162px; margin-top: 0; gap: 4px; }
+  .vitrine__barra i { flex: 1 1 0; width: auto; height: 3px; }
+  .vitrine__titulo { grid-area: titulo; margin-top: 0; font-size: clamp(1.4rem, 6.2vw, 1.75rem); }
+  .js .vitrine__item { scroll-margin-top: 100px; }   /* a faixa cobre o topo do item */
+}
+
+@media (max-width: 620px) {
+  :root { --gutter: 18px; --header-h: 68px; }
+  .brand img { height: 36px; }
+  .titulo { font-size: clamp(1.8rem, 8.6vw, 2.3rem); }
+  .contorno { -webkit-text-stroke-width: 1.5px; }
+  .hero__frase { font-size: clamp(1.7rem, 8.4vw, 2.2rem); }
+  .hero__acoes .btn { flex: 1 1 100%; }
+  .hero__chip { font-size: .74rem; padding: 7px 12px; }
+  .hero__chip--1 { top: 6%; }
+  .hero__chip--2 { top: 36%; }
+  .solucoes__grid, .eventos__grid, .pilares, .form__grid, .rodape__grid { grid-template-columns: 1fr; }
+  .numeros { gap: 14px 28px; }
+  .numeros strong { font-size: 1.5rem; }
+  .quem__anos { width: 104px; height: 104px; right: 0; }
+  .quem__anos strong { font-size: 1.7rem; }
+  .form__acoes .btn { width: 100%; }
+  .redes { flex-direction: column; align-items: flex-start; }
+  .vitrine__titulo { min-height: 2.1em; }   /* reserva 2 linhas: a faixa não muda de altura ao girar */
+  .troca-mascote { padding-left: 12px; }
+  .troca-mascote button { padding: 7px 11px; }
+}

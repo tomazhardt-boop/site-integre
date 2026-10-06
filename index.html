@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integre Jr. — Soluções em engenharia | Empresa Júnior da UFSC Blumenau</title>
+  <meta name="description" content="Empresa Júnior de soluções em engenharia vinculada à UFSC Blumenau: desenvolvimento web, caracterização de materiais, mapeamento de processos, prototipagem, impressão 3D e soluções têxteis.">
+  <meta name="theme-color" content="#061033">
+  <link rel="icon" type="image/svg+xml" href="imagens/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="imagens/favicon-48.png">
+  <link rel="apple-touch-icon" href="imagens/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat+Brush&family=Michroma&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ================= SPRITE DE ÍCONES (igual nas 4 páginas) ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M4 6h16"/><path d="M4 18h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+    <symbol id="i-microscope" viewBox="0 0 24 24"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></symbol>
+    <symbol id="i-workflow" viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></symbol>
+    <symbol id="i-shirt" viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-graduation" viewBox="0 0 24 24"><path d="M22 10v6"/><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+  </defs>
+</svg>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container header__inner">
+    <a class="brand" href="index.html" aria-label="Integre Jr. — página inicial">
+      <img src="imagens/logo-horizontal-branca.png" alt="Integre Jr." width="1280" height="399">
+    </a>
+    <div class="header__direita">
+      <nav class="nav" aria-label="Principal">
+        <a href="index.html" class="is-active" aria-current="page">Home</a>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="solucoes.html">Soluções</a>
+        <a href="eventos.html">Eventos</a>
+      </nav>
+      <a class="btn btn--primario btn--sm header__cta" href="index.html#contato">Contato</a>
+      <button class="menu-btn" id="openMenu" type="button" aria-label="Abrir menu" aria-controls="mobileNav" aria-expanded="false">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MENU MOBILE ================= -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <div class="mobile-nav__scrim"></div>
+  <div class="mobile-nav__painel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="mobile-nav__topo">
+      <img src="imagens/logo-horizontal-branca.png" alt="Integre Jr." width="1280" height="399">
+      <button class="menu-btn" id="closeMenu" type="button" aria-label="Fechar menu">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+    <nav class="mobile-nav__links" aria-label="Principal (celular)">
+      <a href="index.html" class="is-active" aria-current="page">Home</a>
+      <a href="sobre.html">Sobre Nós</a>
+      <a href="solucoes.html">Soluções</a>
+      <a href="eventos.html">Eventos</a>
+    </nav>
+    <a class="btn btn--primario" href="index.html#contato">Contato</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- ================= APRESENTAÇÃO ================= -->
+  <section class="secao hero secao--escura" id="inicio">
+    <span class="deco-linhas deco-linhas--tr" aria-hidden="true"></span>
+    <span class="deco-pontos" style="left:1%; bottom:6%" aria-hidden="true"></span>
+    <div class="container hero__grid">
+      <div class="hero__texto">
+        <span class="selo">Empresa Júnior · UFSC Blumenau</span>
+        <h1 class="hero__marca">
+          <img src="imagens/logo-horizontal-branca.png" alt="Integre Jr." width="1280" height="399">
+        </h1>
+        <p class="hero__frase">
+          <span class="contorno">Soluções em</span>
+          <span>Engenharia</span>
+        </p>
+        <div class="hero__acoes">
+          <a class="btn btn--primario" href="#contato">Fale com a gente</a>
+          <a class="btn btn--contorno" href="solucoes.html">Conheça as soluções</a>
+        </div>
+        <!-- Só no protótipo: compara os estilos de mascote (troca também o da seção Quem somos) -->
+        <div class="troca-mascote" role="group" aria-label="Estilo do mascote (só no protótipo)">
+          <span class="troca-mascote__rotulo">Mascote<small>só no protótipo</small></span>
+          <button type="button" data-estilo="cartoon" aria-pressed="true">Cartoon</button>
+          <button type="button" data-estilo="aquarela" aria-pressed="false">Aquarela</button>
+          <button type="button" data-estilo="3d" aria-pressed="false">3D</button>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <img class="hero__simbolo" src="imagens/simbolo.svg" alt="" aria-hidden="true">
+        <img class="hero__mascote mascote" data-pose="apontando" src="imagens/mascote-apontando.png" width="569" height="939"
+             alt="Mascote da Integre Jr.: um tigre-branco com a camisa polo azul-marinho da empresa">
+        <span class="hero__chip hero__chip--1">Controle e Automação</span>
+        <span class="hero__chip hero__chip--2">Materiais</span>
+        <span class="hero__chip hero__chip--3">Têxtil</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOLUÇÕES (resumo) ================= -->
+  <section class="secao secao--clara" id="solucoes">
+    <div class="container">
+      <header class="secao__cabeca reveal">
+        <span class="selo">O que fazemos</span>
+        <h2 class="titulo"><span class="contorno">Nossas</span> soluções</h2>
+      </header>
+
+      <div class="solucoes__grid">
+        <a class="card-solucao reveal" href="solucoes.html#web">
+          <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg></span>
+          <h3>Desenvolvimento Web</h3>
+          <p>Landing pages, sites institucionais e sistemas web sob medida.</p>
+          <span class="mais">Saiba mais</span>
+        </a>
+        <a class="card-solucao reveal" data-delay="1" href="solucoes.html#materiais">
+          <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-microscope"/></svg></span>
+          <h3>Caracterização de Materiais</h3>
+          <p>Análises para entender a composição, a estrutura e as propriedades dos seus materiais.</p>
+          <span class="mais">Saiba mais</span>
+        </a>
+        <a class="card-solucao reveal" data-delay="2" href="solucoes.html#processos">
+          <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-workflow"/></svg></span>
+          <h3>Mapeamento de Processos</h3>
+          <p>Diagnóstico e melhoria dos processos da sua empresa, do começo ao fim.</p>
+          <span class="mais">Saiba mais</span>
+        </a>
+        <a class="card-solucao reveal" href="solucoes.html#prototipagem">
+          <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-cpu"/></svg></span>
+          <h3>Prototipagem</h3>
+          <p>Do desenho técnico ao protótipo funcional, com placas e microcontroladores.</p>
+          <span class="mais">Saiba mais</span>
+        </a>
+        <a class="card-solucao reveal" data-delay="1" href="solucoes.html#impressao-3d">
+          <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg></span>
+          <h3>Impressão 3D</h3>
+          <p>Peças e produtos sob medida, impressos em 3D.</p>
+          <span class="mais">Saiba mais</span>
+        </a>
+        <a class="card-solucao reveal" data-delay="2" href="solucoes.html#texteis">
+          <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-shirt"/></svg></span>
+          <h3>Soluções Têxteis</h3>
+          <p>Testes laboratoriais, desenvolvimento de produto e pesquisa técnica.</p>
+          <span class="mais">Saiba mais</span>
+        </a>
+      </div>
+
+      <div class="secao__rodape">
+        <a class="btn btn--primario" href="solucoes.html">Ver todas as soluções</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUEM SOMOS (resumo) ================= -->
+  <section class="secao secao--escura quem" id="quem-somos">
+    <span class="deco-linhas deco-linhas--tr" aria-hidden="true"></span>
+    <span class="deco-pontos" style="right:1%; bottom:2%" aria-hidden="true"></span>
+    <div class="container quem__grid">
+      <div class="quem__visual">
+        <img class="quem__simbolo" src="imagens/simbolo.svg" alt="" aria-hidden="true">
+        <img class="mascote" data-pose="cruzados" src="imagens/mascote-bracos-cruzados.png" width="475" height="939"
+             alt="Mascote da Integre Jr.: um tigre-branco com a camisa polo azul-marinho da empresa">
+        <span class="quem__anos" aria-hidden="true"><strong>+10</strong><span>anos de<br>história</span></span>
+      </div>
+      <div class="quem__texto reveal">
+        <span class="selo">Quem somos</span>
+        <h2 class="titulo"><span class="contorno">Engenharia</span> que integra</h2>
+        <p>A Integre Jr. é a Empresa Júnior vinculada à UFSC Blumenau. Desde 2015, estudantes de Engenharia de Controle e Automação, de Materiais e Têxtil tiram projetos do papel para empresas de verdade — com o preço de quem não visa lucro.</p>
+        <ul class="numeros">
+          <li><strong>2015</strong><span>ano de fundação</span></li>
+          <li><strong>3</strong><span>engenharias</span></li>
+          <li><strong>6</strong><span>soluções</span></li>
+        </ul>
+        <a class="btn btn--primario" href="sobre.html">Conheça a Integre</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EVENTOS (chamada) ================= -->
+  <section class="secao secao--clara" id="eventos">
+    <div class="container">
+      <header class="secao__cabeca reveal">
+        <span class="selo">Fique por dentro</span>
+        <h2 class="titulo"><span class="contorno">Nossos</span> eventos</h2>
+        <p class="lead">Além dos projetos, a Integre movimenta a comunidade da UFSC Blumenau o ano inteiro.</p>
+      </header>
+
+      <div class="eventos__grid">
+        <a class="evento reveal" href="eventos.html#hackathon">
+          <div class="capa capa-hackathon">
+            <span class="capa__selo">INTEGRE JR.</span>
+            <p class="capa__titulo"><span class="contorno">Hacka</span>thon</p>
+            <span class="capa__pilula">Maratona de inovação</span>
+          </div>
+          <div class="evento__corpo">
+            <h3>Hackathon</h3>
+            <p>Equipes resolvendo desafios reais de empresas parceiras, com mentoria do começo ao fim.</p>
+            <span class="mais">Saiba mais</span>
+          </div>
+        </a>
+        <a class="evento reveal" data-delay="1" href="eventos.html#talks">
+          <div class="capa capa-talks">
+            <span class="capa__selo">INTEGRE JR.</span>
+            <p class="capa__titulo capa__titulo--display">Integre<br>Talks</p>
+            <span class="capa__pilula">Carreira e mercado</span>
+          </div>
+          <div class="evento__corpo">
+            <h3>Integre Talks</h3>
+            <p>Bate-papos com profissionais do mercado sobre carreira, liderança e engenharia na prática.</p>
+            <span class="mais">Saiba mais</span>
+          </div>
+        </a>
+        <a class="evento reveal" data-delay="2" href="eventos.html#agasalho">
+          <div class="capa capa-agasalho">
+            <span class="capa__selo">INTEGRE JR.</span>
+            <p class="capa__titulo"><small>Campanha do</small>Agasalho</p>
+            <span class="capa__pilula">Doe um agasalho, aqueça um coração</span>
+          </div>
+          <div class="evento__corpo">
+            <h3>Campanha do Agasalho</h3>
+            <p>Todo inverno, arrecadamos agasalhos para quem mais precisa em Blumenau.</p>
+            <span class="mais">Saiba mais</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTATO + REDES ================= -->
+  <section class="secao secao--escura contato" id="contato">
+    <span class="deco-linhas deco-linhas--bl" aria-hidden="true"></span>
+    <div class="container">
+      <div class="contato__grid">
+        <div class="contato__texto reveal">
+          <span class="selo">Contato</span>
+          <h2 class="titulo"><span class="contorno">Vamos</span> conversar?</h2>
+          <p class="lead">Conte sua ideia ou o desafio da sua empresa. A gente responde por e-mail para marcar uma conversa.</p>
+          <ul class="contato__lista">
+            <li>
+              <span class="icone-caixa"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+              <span><small>E-mail</small><a href="mailto:integre@integrejr.com.br">integre@integrejr.com.br</a></span>
+            </li>
+            <li>
+              <span class="icone-caixa"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+              <span><small>Telefone (provisório)</small>(47) 90000-0000</span>
+            </li>
+            <li>
+              <span class="icone-caixa"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+              <span><small>Endereço</small>Rua João Pessoa, 2514 — Blumenau/SC</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reveal" data-delay="1">
+          <form class="form" data-mock novalidate>
+            <p class="form__titulo">Envie seu primeiro contato</p>
+            <div class="form__grid">
+              <div class="campo">
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" type="text" autocomplete="name" required>
+              </div>
+              <div class="campo">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="campo">
+                <label for="empresa">Empresa <small>(opcional)</small></label>
+                <input id="empresa" name="empresa" type="text" autocomplete="organization">
+              </div>
+              <div class="campo">
+                <label for="assunto">Assunto</label>
+                <select id="assunto" name="assunto">
+                  <option>Desenvolvimento Web</option>
+                  <option>Caracterização de Materiais</option>
+                  <option>Mapeamento de Processos</option>
+                  <option>Prototipagem</option>
+                  <option>Impressão 3D</option>
+                  <option>Soluções Têxteis</option>
+                  <option>Eventos e parcerias</option>
+                  <option>Outro assunto</option>
+                </select>
+              </div>
+              <div class="campo campo--cheio">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" required></textarea>
+              </div>
+            </div>
+            <div class="form__acoes">
+              <span class="form__nota">Protótipo: o envio ainda não está ligado.</span>
+              <button class="btn btn--primario" type="submit">Enviar mensagem</button>
+            </div>
+          </form>
+          <div class="form form-sucesso" tabindex="-1" hidden>
+            <span class="icone-caixa"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>
+            <h3>Mensagem pronta!</h3>
+            <p>No site final, ela chega no e-mail da Integre. Neste protótipo nada foi enviado.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="redes">
+        <p class="redes__titulo">Siga a Integre</p>
+        <div class="redes__lista">
+          <a class="rede" href="https://www.instagram.com/integre.jr/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>@integre.jr</a>
+          <a class="rede" href="https://www.linkedin.com/company/integre-consultoria/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a>
+          <a class="rede" href="https://www.facebook.com/IntegreJr/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-facebook"/></svg>Facebook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= RODAPÉ ================= -->
+<footer class="rodape">
+  <div class="container rodape__grid">
+    <div class="rodape__marca">
+      <img src="imagens/logo-horizontal-branca.png" alt="Integre Jr." width="1280" height="399" loading="lazy">
+      <p>Empresa Júnior de soluções em engenharia vinculada à UFSC Blumenau.</p>
+    </div>
+    <div>
+      <h4>Páginas</h4>
+      <nav class="rodape__links" aria-label="Rodapé">
+        <a href="index.html">Home</a>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="solucoes.html">Soluções</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="index.html#contato">Contato</a>
+      </nav>
+    </div>
+    <div>
+      <h4>Contato</h4>
+      <ul class="rodape__contato">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Rua João Pessoa, 2514 — Blumenau/SC</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>(47) 90000-0000</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:integre@integrejr.com.br">integre@integrejr.com.br</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Redes</h4>
+      <div class="rodape__redes">
+        <a href="https://www.instagram.com/integre.jr/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
+        <a href="https://www.linkedin.com/company/integre-consultoria/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+        <a href="https://www.facebook.com/IntegreJr/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="#i-facebook"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="container rodape__base">
+    <span>© <span class="js-year">2026</span> Integre Jr. · Empresa Júnior vinculada à UFSC Blumenau</span>
+    <span>Protótipo — conteúdo provisório</span>
+  </div>
+</footer>
+
+
+<script src="js/main.js"></script>
+</body>
+</html>
