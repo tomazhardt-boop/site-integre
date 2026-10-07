@@ -1,7 +1,6 @@
 /* ============================================================
    INTEGRE JR. — Empresa Júnior de soluções em engenharia (UFSC Blumenau)
-   Protótipo · identidade da Integre: azul-marinho, azul escuro, off-white e branco,
-   com o padrão de linhas da marca.
+   Protótipo · identidade da Integre: azul-marinho, azul escuro, off-white e branco.
    O azul elétrico e as pílulas arredondadas são do HACKATHON: só aparecem nas peças dele.
    ============================================================ */
 
@@ -115,30 +114,6 @@ svg.icon {
 .secao__cabeca .lead { margin: 18px auto 0; }
 .secao__rodape { text-align: center; margin-top: clamp(36px, 4vw, 52px); }
 
-/* Padrão de linhas da Integre (imagens/linhas-*.png, gerado do arquivo enviado pela Integre).
-   Na orientação original os cortes ficam à direita e embaixo; os modificadores espelham. */
-.deco-linhas {
-  position: absolute; z-index: 0; pointer-events: none;
-  width: min(520px, 62vw); aspect-ratio: 637 / 751;
-  background: url(../imagens/linhas-claras.png) no-repeat center / contain;
-  opacity: .38;
-}
-.secao--clara .deco-linhas,
-.secao--branca .deco-linhas { background-image: url(../imagens/linhas-escuras.png); opacity: .7; }
-.deco-linhas--br { right: 0; bottom: 0; }
-.deco-linhas--tr { right: 0; top: 0; transform: scaleY(-1); }
-.deco-linhas--bl { left: 0; bottom: 0; transform: scaleX(-1); }
-
-.deco-pontos {
-  position: absolute; z-index: 0; pointer-events: none;
-  width: 160px; height: 160px; color: #fff; opacity: .3;
-  background-image: radial-gradient(currentColor 1.6px, transparent 1.9px);
-  background-size: 14px 14px;
-  -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 70%);
-          mask-image: radial-gradient(circle, #000 25%, transparent 70%);
-}
-.secao--clara .deco-pontos, .secao--branca .deco-pontos { color: var(--navy-900); opacity: .22; }
-
 /* ============================================================
    4. TIPOGRAFIA
    ============================================================ */
@@ -214,11 +189,11 @@ svg.icon {
 .nav { display: flex; align-items: center; gap: 4px; }
 .nav a {
   padding: 10px 16px; border-radius: var(--r-btn);
-  color: #D3DBF3; font-weight: 600; font-size: .95rem;
-  transition: color .2s, background .2s;
+  color: var(--muted-dark); font-weight: 600; font-size: .95rem;
+  transition: color .2s;
 }
-.nav a:hover { color: #fff; background: rgba(255, 255, 255, .07); }
-.nav a.is-active { color: #fff; background: rgba(255, 255, 255, .11); }
+.nav a:hover { color: #fff; }   /* só o texto clareia, sem caixa */
+.nav a.is-active { color: #fff; font-size: 1.05rem; }   /* página atual: texto branco e um pouco maior, sem caixa */
 .header__cta { margin-left: 8px; }
 
 .menu-btn {
@@ -261,7 +236,7 @@ svg.icon {
     linear-gradient(180deg, var(--navy-900), var(--navy-950));
 }
 .hero__grid { display: grid; grid-template-columns: 1.08fr .92fr; align-items: end; gap: 32px; }
-.hero__texto { padding-bottom: clamp(36px, 5vw, 72px); }
+.hero__texto { align-self: center; padding-bottom: clamp(36px, 5vw, 72px); }
 .hero__marca { margin-top: 20px; }
 .hero__marca img { width: min(440px, 100%); }
 .hero__frase {
@@ -271,12 +246,11 @@ svg.icon {
 }
 .hero__frase .contorno { display: block; }
 .hero__lead { margin-top: 18px; max-width: 46ch; }
-.hero__acoes { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 14px; }
 
 .hero__visual { position: relative; display: flex; justify-content: center; align-items: flex-end; height: 100%; }
 .hero__simbolo {
   position: absolute; left: 50%; top: 4%; width: 86%; max-width: 500px;
-  transform: translateX(-50%); opacity: .26;
+  transform: translateX(-50%);   /* simbolo-apagado.svg: tom discreto, mas sólido (a grade de quadrados não aparece através) */
 }
 .hero__mascote {
   position: relative; z-index: 1; width: auto; max-width: 100%;
@@ -302,8 +276,8 @@ svg.icon {
 .solucoes__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .card-solucao {
   position: relative; overflow: hidden; isolation: isolate;
-  display: flex; flex-direction: column; gap: 12px; padding: 30px 28px 26px;
-  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  display: flex; flex-direction: column; gap: 8px; padding: 22px 24px 20px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 0;   /* cantos retos */
   box-shadow: var(--shadow-sm);
   transition: transform .25s var(--ease), box-shadow .25s, border-color .25s;
 }
@@ -320,8 +294,7 @@ svg.icon {
 }
 .card-solucao:hover .card-solucao__icone { background: var(--azul); }
 .card-solucao__icone .icon { width: 26px; height: 26px; }
-.card-solucao h3 { margin-top: 6px; font-size: 1.18rem; font-weight: 800; line-height: 1.25; color: var(--ink); }
-.card-solucao p { font-size: .97rem; color: var(--muted); }
+.card-solucao h3 { margin-top: 4px; font-size: 1.18rem; font-weight: 800; line-height: 1.25; color: var(--ink); }
 .mais {
   margin-top: auto; padding-top: 6px; display: inline-flex; align-items: center;
   color: var(--azul); font-weight: 700; font-size: .92rem;
@@ -370,11 +343,26 @@ a:hover > .mais, a:hover > * > .mais { text-decoration-color: currentColor; }
    ============================================================ */
 .eventos__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .evento {
-  display: flex; flex-direction: column; overflow: hidden;
+  position: relative; display: flex; flex-direction: column; overflow: hidden;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
   box-shadow: var(--shadow-sm); transition: transform .25s var(--ease), box-shadow .25s;
 }
 .evento:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+/* Borda que brilha (versão em CSS puro do ShineBorder do Magic UI): um anel de cor num degradê três
+   vezes maior que o card passeia pela diagonal, e a máscara deixa aparecer só a faixa da borda
+   (o padding). Cores do degradê do símbolo: azul → roxo. */
+.evento::after {
+  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  --borda: 2px; padding: var(--borda); border-radius: inherit;
+  background: radial-gradient(transparent, transparent, var(--azul), var(--purple), transparent, transparent) 0 0 / 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask-composite: exclude;
+  animation: brilho-borda 14s linear infinite;
+  will-change: background-position;
+}
+@keyframes brilho-borda { 50% { background-position: 100% 100%; } }
 .evento__corpo { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 24px 26px 26px; }
 .evento__corpo h3 { font-size: 1.2rem; font-weight: 800; color: var(--ink); }
 .evento__corpo p { font-size: .97rem; color: var(--muted); }
@@ -507,20 +495,20 @@ a:hover > .mais, a:hover > * > .mais { text-decoration-color: currentColor; }
    12. RODAPÉ
    ============================================================ */
 .rodape { position: relative; overflow: hidden; padding-top: 64px; background: var(--navy-950); color: var(--muted-dark); font-size: .95rem; }
-.rodape__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.4fr 1fr 1.3fr 1fr; gap: 40px; padding-bottom: 48px; }
+.rodape__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.4fr 1.3fr 1fr; gap: 40px; padding-bottom: 48px; }
 .rodape__marca img { height: 44px; width: auto; }
 .rodape__marca p { margin-top: 18px; max-width: 34ch; }
 .rodape h4 { margin-bottom: 18px; font-family: var(--font-display); font-weight: 400; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: #fff; }
-.rodape__links { display: grid; gap: 10px; }
-.rodape__links a:hover, .rodape__contato a:hover { color: #fff; }
+.rodape__contato a:hover { color: #fff; }
 .rodape__contato { display: grid; gap: 12px; }
 .rodape__contato li { display: flex; align-items: flex-start; gap: 10px; }
 .rodape__contato .icon { margin-top: 3px; color: var(--offwhite); }
-.rodape__redes { display: flex; gap: 10px; }
+.rodape__redes { display: flex; gap: 12px; }
 .rodape__redes a {
-  width: 42px; height: 42px; border-radius: var(--r-btn); display: grid; place-items: center;
+  width: 52px; height: 52px; border-radius: var(--r-btn); display: grid; place-items: center;
   color: #fff; border: 1px solid var(--line-dark); transition: background .2s, border-color .2s, color .2s;
 }
+.rodape__redes .icon { width: 24px; height: 24px; }
 .rodape__redes a:hover { background: var(--offwhite); border-color: var(--offwhite); color: var(--navy-900); }
 .rodape__base {
   position: relative; z-index: 1; border-top: 1px solid var(--line-dark); padding: 22px 0;
@@ -531,7 +519,7 @@ a:hover > .mais, a:hover > * > .mais { text-decoration-color: currentColor; }
    13. PÁGINAS INTERNAS (Sobre, Soluções, Eventos)
    ============================================================ */
 .pagina-hero {
-  padding: clamp(56px, 8vw, 104px) 0 clamp(56px, 7vw, 92px);
+  padding: clamp(80px, 10vw, 136px) 0 clamp(76px, 9vw, 124px);
   background:
     radial-gradient(50% 70% at 82% 50%, var(--azul-luz), transparent 70%),
     linear-gradient(180deg, var(--navy-900), var(--navy-950));
@@ -545,19 +533,8 @@ a:hover > .mais, a:hover > * > .mais { text-decoration-color: currentColor; }
 .pagina-hero__simbolo {
   position: absolute; z-index: 0; top: 50%; right: max(var(--gutter), calc((100vw - var(--container)) / 2));
   width: clamp(150px, 20vw, 280px); transform: translateY(-50%);
-  filter: brightness(.85);   /* escurece sem transparência: com opacity, as linhas atrás apareciam através dele */
+  filter: brightness(.85);   /* escurece sem ficar transparente */
 }
-.aviso-prototipo {
-  display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 8px 16px;
-  border-radius: var(--r-btn); border: 1px dashed rgba(255, 255, 255, .3); background: rgba(255, 255, 255, .05);
-  font-size: .85rem; color: var(--muted-dark);
-}
-.atalhos { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
-.atalhos a {
-  padding: 8px 16px; border-radius: var(--r-btn); border: 1px solid var(--line-dark);
-  color: #fff; font-weight: 600; font-size: .88rem; transition: background .2s, border-color .2s, color .2s;
-}
-.atalhos a:hover { background: var(--offwhite); border-color: var(--offwhite); color: var(--navy-900); }
 
 .bloco {
   display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(28px, 5vw, 64px);
@@ -573,7 +550,7 @@ a:hover > .mais, a:hover > * > .mais { text-decoration-color: currentColor; }
 }
 .bloco__icone .icon { width: 24px; height: 24px; }
 .bloco__texto h2 {
-  margin-top: 18px; color: var(--ink); font-weight: 900; text-transform: uppercase; letter-spacing: -.01em;
+  margin-top: 18px; color: var(--tinta); font-weight: 900; text-transform: uppercase; letter-spacing: -.01em;
   font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.08;
 }
 .bloco__texto > p { margin-top: 16px; color: var(--muted); }
@@ -581,23 +558,92 @@ a:hover > .mais, a:hover > * > .mais { text-decoration-color: currentColor; }
 .planejado li { display: flex; align-items: flex-start; gap: 12px; }
 .planejado .icon { margin-top: 3px; color: var(--azul); }
 .planejado em { color: var(--muted); }
+/* Bloco sobre fundo escuro (Integre Talks em Eventos) */
+.secao--escura .bloco__texto > p, .secao--escura .planejado em { color: var(--muted-dark); }
+.secao--escura .planejado .icon { color: var(--offwhite); }
 .bloco__midia {
   position: relative; overflow: hidden; isolation: isolate; aspect-ratio: 4 / 3; border-radius: var(--r-lg);
   display: grid; place-items: center; align-content: center; gap: 12px; text-align: center;
   color: var(--muted-dark); background: linear-gradient(160deg, var(--navy-800), var(--navy-950));
   box-shadow: var(--shadow-md);
 }
-.bloco__midia::before {
-  content: ''; position: absolute; z-index: -1; right: 0; bottom: 0; width: 56%; aspect-ratio: 637 / 751;
-  background: url(../imagens/linhas-claras.png) no-repeat right bottom / contain; opacity: .35;
-}
 .bloco__midia .icon { width: 40px; height: 40px; stroke-width: 1.5; }
 .bloco__midia span { font-family: var(--font-display); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; }
+/* Colmeia de hexágonos que acende em volta do cursor (main.js), hoje na caixa do Desenvolvimento Web em
+   Soluções. Fica atrás do conteúdo da caixa e não recebe o mouse: quem escuta é a caixa. A cor das
+   linhas é o color daqui. */
+.grade-cursor {
+  position: absolute; inset: 0; z-index: 0; display: block; width: 100%; height: 100%;
+  pointer-events: none; color: var(--offwhite);
+}
+.bloco__midia > .icon, .bloco__midia > span { position: relative; z-index: 1; }   /* por cima da colmeia */
+.bloco__midia .vitrine__icone { z-index: 1; }
 /* Capa de evento no lugar da imagem do bloco */
 .bloco__capa { aspect-ratio: 4 / 3; border-radius: var(--r-lg); box-shadow: var(--shadow-md); }
 .bloco--invertido .bloco__capa { order: -1; }
 .bloco__capa .capa__titulo { font-size: clamp(2.4rem, 5vw, 3.6rem); }
 .bloco__capa .capa__titulo--display { font-size: clamp(1.9rem, 3.8vw, 2.8rem); }
+
+/* Faixa do Integre Talks (Eventos): o marinho da capa com luzes suaves e as partículas (main.js).
+   A capa perde a cor de fundo, a sombra e os pontos dos cantos; as luzes dela somem antes da borda,
+   então o retângulo se mistura com a faixa. */
+.secao--talks {
+  background:
+    radial-gradient(45% 70% at 78% 40%, rgba(92, 110, 175, .2), transparent 70%),
+    radial-gradient(35% 60% at 8% 90%, rgba(92, 110, 175, .14), transparent 70%),
+    var(--talks-navy);
+}
+.secao--talks .bloco { border-bottom: 0; padding-bottom: 0; }   /* o carrossel vem logo abaixo, sem separador */
+.secao--talks .capa-talks { background-color: transparent; box-shadow: none; }
+.secao--talks .capa-talks::after { display: none; }
+.particulas {
+  position: absolute; inset: 0; z-index: 0; display: block; width: 100%; height: 100%;
+  pointer-events: none; color: #fff;   /* cor dos pontos */
+}
+
+/* Carrossel de fotos (main.js): os slides ficam empilhados na mesma célula do grid e o JS dá a cada
+   um a distância até a foto atual (--pos: -1, 0, 1...). A atual fica inteira no centro; a anterior e
+   a próxima aparecem só em parte nas laterais, menores e desfocadas; as outras ficam invisíveis. */
+.carrossel { margin-top: clamp(56px, 7vw, 96px); --largura: 60%; --vao: 24px; }
+.carrossel__palco {
+  display: grid; overflow: hidden; touch-action: pan-y; padding-block: 8px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);   /* laterais somem aos poucos */
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.carrossel__slide {
+  grid-area: 1 / 1; justify-self: center; width: var(--largura); aspect-ratio: 16 / 10; margin: 0;
+  overflow: hidden; border-radius: var(--r-lg); border: 1px solid var(--line-dark); box-shadow: var(--shadow-lg);
+  transform: translateX(calc(var(--pos, 0) * (93% + var(--vao)))) scale(.86);
+  filter: blur(7px) brightness(.7); opacity: 0; pointer-events: none;
+  transition: transform .6s var(--ease), filter .6s var(--ease), opacity .6s var(--ease);
+}
+.carrossel__slide.is-ativo { z-index: 1; transform: none; filter: none; opacity: 1; pointer-events: auto; }
+.carrossel__slide.is-vizinho { opacity: .85; pointer-events: auto; cursor: pointer; }
+.carrossel__slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Espaço reservado até chegarem as fotos: cada um com a luz num lugar, para dar para ver a troca */
+.carrossel__vazio {
+  width: 100%; height: 100%; display: grid; place-content: center; justify-items: center; gap: 12px;
+  color: var(--muted-dark); text-align: center;
+  background: radial-gradient(55% 65% at var(--luz, 30% 30%), rgba(92, 110, 175, .55), transparent 70%),
+              linear-gradient(160deg, var(--navy-800), var(--navy-950));
+}
+.carrossel__slide:nth-child(2) .carrossel__vazio { --luz: 72% 35%; }
+.carrossel__slide:nth-child(3) .carrossel__vazio { --luz: 50% 80%; }
+.carrossel__slide:nth-child(4) .carrossel__vazio { --luz: 20% 70%; }
+.carrossel__slide:nth-child(5) .carrossel__vazio { --luz: 80% 75%; }
+.carrossel__slide:nth-child(6) .carrossel__vazio { --luz: 50% 20%; }
+.carrossel__vazio .icon { width: 40px; height: 40px; stroke-width: 1.5; }
+.carrossel__vazio span { font-family: var(--font-display); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; }
+/* Traços de navegação, no mesmo estilo da barra da vitrine de Soluções */
+.carrossel__pontos { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.carrossel__pontos button {
+  width: 30px; height: 4px; padding: 0; border: 0; border-radius: 2px; cursor: pointer;
+  background: rgba(255, 255, 255, .25); transition: background .3s;
+  position: relative;
+}
+.carrossel__pontos button::before { content: ''; position: absolute; inset: -10px -2px; }   /* área de toque maior */
+.carrossel__pontos button:hover { background: rgba(255, 255, 255, .5); }
+.carrossel__pontos button[aria-current="true"] { background: #fff; }
 
 /* Vitrine das soluções: os itens rolam à esquerda e o nome gira letra a letra no painel fixo à
    direita (no celular, numa faixa presa embaixo do header). O painel só aparece com JS. */
@@ -664,25 +710,7 @@ html:not(.js) .vitrine__itens { grid-column: 1 / -1; width: min(100%, 640px); ma
 .pilar p { margin-top: 8px; color: var(--muted); font-size: .97rem; }
 
 /* ============================================================
-   14. TROCA DE MASCOTE (só no protótipo)
-   ============================================================ */
-.troca-mascote {
-  margin-top: 22px; width: fit-content; max-width: 100%;
-  display: flex; align-items: center; flex-wrap: wrap; gap: 4px; padding: 5px 5px 5px 16px;
-  border-radius: var(--r-btn); border: 1px dashed rgba(255, 255, 255, .28);
-  background: rgba(255, 255, 255, .05); font-size: .8rem; color: #fff;
-}
-.troca-mascote__rotulo { margin-right: 8px; font-weight: 700; line-height: 1.15; }
-.troca-mascote__rotulo small { display: block; font-size: .66rem; font-weight: 500; color: var(--muted-dark); }
-.troca-mascote button {
-  padding: 8px 14px; border: 0; border-radius: 7px; background: transparent;
-  font-weight: 700; color: var(--muted-dark); cursor: pointer; transition: background .2s, color .2s;
-}
-.troca-mascote button:hover { color: #fff; background: rgba(255, 255, 255, .08); }
-.troca-mascote button[aria-pressed="true"] { background: var(--offwhite); color: var(--ink); }
-
-/* ============================================================
-   15. ANIMAÇÃO DE ENTRADA
+   14. ANIMAÇÃO DE ENTRADA
    Só esconde quando <html class="js"> (script inline no <head>): sem JS tudo aparece.
    ============================================================ */
 .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
@@ -698,7 +726,7 @@ html:not(.js) .vitrine__itens { grid-column: 1 / -1; width: min(100%, 640px); ma
 }
 
 /* ============================================================
-   16. RESPONSIVO (desktop-first)
+   15. RESPONSIVO (desktop-first)
    ============================================================ */
 @media (max-width: 1080px) {
   .nav, .header__cta { display: none; }
@@ -742,7 +770,6 @@ html:not(.js) .vitrine__itens { grid-column: 1 / -1; width: min(100%, 640px); ma
   .titulo { font-size: clamp(1.8rem, 8.6vw, 2.3rem); }
   .contorno { -webkit-text-stroke-width: 1.5px; }
   .hero__frase { font-size: clamp(1.7rem, 8.4vw, 2.2rem); }
-  .hero__acoes .btn { flex: 1 1 100%; }
   .hero__chip { font-size: .74rem; padding: 7px 12px; }
   .hero__chip--1 { top: 6%; }
   .hero__chip--2 { top: 36%; }
@@ -754,6 +781,5 @@ html:not(.js) .vitrine__itens { grid-column: 1 / -1; width: min(100%, 640px); ma
   .form__acoes .btn { width: 100%; }
   .redes { flex-direction: column; align-items: flex-start; }
   .vitrine__titulo { min-height: 2.1em; }   /* reserva 2 linhas: a faixa não muda de altura ao girar */
-  .troca-mascote { padding-left: 12px; }
-  .troca-mascote button { padding: 7px 11px; }
+  .carrossel { --largura: 72%; --vao: 8px; }
 }

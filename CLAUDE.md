@@ -50,14 +50,37 @@ Se mudar um deles, replique nas 4. A única diferença intencional: o link da pr
   - `.titulo` com `<span class="contorno">` (letra só de contorno) seguido de texto cheio;
   - `.selo`: rótulo em Michroma com traço (no lugar das pílulas); centralizado, ganha traço dos dois lados;
   - `.btn--primario`: off-white no fundo escuro, marinho no fundo claro e no formulário;
-  - `.deco-linhas` (padrão de linhas da Integre; `--tr`, `--br`, `--bl`) e `.deco-pontos`. As linhas
-    alternam em cada página: uma seção com, a seguinte sem (decidido em 06/10/2026). O rodapé fica sem.
+  - Sem decorações de linhas nem grade de pontinhos em lugar nenhum do site (o Tomaz tirou tudo em
+    06/10/2026: `.deco-linhas`, `.deco-pontos` e as linhas dentro das imagens `.bloco__midia`).
+  - Começo das páginas internas só com selo, título e texto: sem os atalhos para as seções e sem o aviso
+    de "página em construção". Rodapé com marca, contato e redes (sem a lista de páginas).
+  - Menu do cabeçalho, sem caixa nenhuma: no hover só o texto clareia; a página atual fica com o texto
+    branco e um pouco maior.
+  - Faixa do Integre Talks em Eventos (`.secao--talks`): seção própria com o marinho da capa e luzes, e
+    partículas brancas que seguem o mouse (`canvas.particulas[data-particulas]`, versão em JS puro do
+    Particles do Magic UI; ajustes no objeto `PARTICULAS` do main.js). Além dos pontos soltos, há focos
+    circulares em grade completa (a grade de pontos da identidade do Talks), em que só o brilho cai do
+    centro para a borda, posicionados longe do texto e das fotos: três no computador (`focos`) e dois entre
+    a capa e o carrossel até 960 px (`focosCelular`). A capa ali fica sem fundo, sem sombra e sem os pontos
+    dos cantos, para se misturar com a faixa.
+  - Carrossel de fotos `[data-carrossel]` (faixa do Talks): uma foto por vez, com um pedaço desfocado da
+    anterior e da próxima; sem fim; navega clicando na vizinha, nos traços, arrastando ou pelo teclado.
+    Hoje com 6 espaços reservados `.carrossel__vazio`; para pôr foto, troque o div por `<img>` (instrução
+    num comentário no HTML).
   - `.vitrine` (página Soluções): os itens rolam e o nome gira letra a letra num painel fixo
     (`[data-giro]`, versão em JS puro do TextRotate do 21st.dev). O nome vem do `h2.vitrine__nome` de cada
     item; para mudar uma solução, edite só o item.
   - `data-embaralhar` em qualquer título: as letras se embaralham ao abrir a página e se acertam da esquerda
     para a direita (versão em JS puro do TextScramble do 21st.dev). Mantém os `<span>` de dentro, como o
     `.contorno`. Hoje só no `<h1>` de Soluções.
+  - `canvas.grade-cursor[data-grade-cursor]` (caixa de imagem do Desenvolvimento Web em Soluções; saiu da
+    abertura da Home em 06/10/2026): colmeia de hexágonos (ponta para cima, como o `icone-hexagono.png`)
+    que acende em volta do cursor, com anel no clique/toque (versão em JS puro do CursorGrid do React Bits,
+    que usa quadrados). O padrão fica no objeto `GRADE` do main.js e cada canvas pode trocar valores num
+    JSON no atributo (na caixa: `cellSize` 46 e `radius` 110); a cor é o `color` do `.grade-cursor` no CSS.
+  - Cards de Nossas Soluções na Home (`.card-solucao`): cantos retos, sem arredondamento.
+  - Borda que brilha nos cards `.evento` da Home (`.evento::after`, só CSS; versão do ShineBorder do Magic UI):
+    degradê azul → roxo que passeia pela borda em 14 s. Largura em `--borda`.
 - Seções: `.secao` + `.secao--escura`, `--clara` ou `--branca`. A variável `--tinta` define a cor do
   título e do contorno em cada fundo.
 
@@ -68,24 +91,24 @@ Se mudar um deles, replique nas 4. A única diferença intencional: o link da pr
   escuro; a colorida (texto roxo) só em fundo claro.
 - `simbolo.svg` e `favicon.svg`: símbolo redesenhado em vetor a partir das medidas da logo (6 triângulos
   e o degradê roxo→azul medido no arquivo original). `simbolo-apagado.svg` é o mesmo desenho com as cores
-  já misturadas com o marinho: imita transparência sem deixar as linhas aparecerem através dele. Entra na
-  abertura das páginas internas até 960 px, por `<picture>`.
-- Mascotes sem fundo: `mascote-apontando.png` e `mascote-bracos-cruzados.png` (cartoon),
-  `mascote-aquarela.png` e `mascote-3d.png`.
-- `linhas-escuras.png` (fundo claro) e `linhas-claras.png` (fundo escuro): o padrão de linhas da
-  Integre, recortado de `Design sem nome (1).png` (arquivo enviado pela Integre, fica em `imagens/`).
+  já misturadas com o marinho: imita transparência sem deixar o que está atrás aparecer através dele.
+  Entra na abertura da Home (atrás do tigre) e na abertura das páginas
+  internas até 960 px, por `<picture>`.
+- Mascotes sem fundo: `mascote-apontando.png` (abertura da Home) e `mascote-bracos-cruzados.png` (Quem
+  somos), no estilo cartoon, o escolhido. `mascote-aquarela.png` e `mascote-3d.png` sobraram do teste de
+  estilos e não são usados.
+- `linhas-escuras.png` e `linhas-claras.png`: o padrão de linhas da Integre, recortado de
+  `Design sem nome (1).png`. Não são mais usados (as linhas saíram do site em 06/10/2026).
 - Os PNGs saem de `_ferramentas/recorte/recorte.ps1` (C# via `Add-Type`, sem Python), a partir dos
   originais. Para regenerar, rode `-Task mascotes`, `-Task logos` ou `-Task linhas`; as instruções
   estão no topo do script. Não edite os PNGs à mão.
 
 ## Só no protótipo (resolver antes de publicar)
 
-- Seletor de estilo do mascote na home (`.troca-mascote`). Ele troca `img.mascote[data-pose]` e lembra
-  a escolha em `localStorage` (chave `integre:mascote`). Sai quando o estilo for escolhido.
 - Formulário `form[data-mock]`: valida e mostra a mensagem de sucesso, mas **não envia nada**. Falta
   escolher como enviar para integre@integrejr.com.br.
-- O telefone `(47) 90000-0000` é genérico. As páginas internas têm o aviso "Página em construção" e
-  blocos "em breve".
+- O telefone `(47) 90000-0000` é genérico. As páginas internas ainda têm blocos e imagens "em breve",
+  e o carrossel do Talks está com espaços reservados no lugar das 6 fotos.
 
 ## Tipo de projeto
 - Tipo: Landing page / institucional — registrado em 30/09/2026

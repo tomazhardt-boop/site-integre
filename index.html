@@ -92,8 +92,6 @@
 
   <!-- ================= APRESENTAÇÃO ================= -->
   <section class="secao hero secao--escura" id="inicio">
-    <span class="deco-linhas deco-linhas--tr" aria-hidden="true"></span>
-    <span class="deco-pontos" style="left:1%; bottom:6%" aria-hidden="true"></span>
     <div class="container hero__grid">
       <div class="hero__texto">
         <span class="selo">Empresa Júnior · UFSC Blumenau</span>
@@ -104,21 +102,10 @@
           <span class="contorno">Soluções em</span>
           <span>Engenharia</span>
         </p>
-        <div class="hero__acoes">
-          <a class="btn btn--primario" href="#contato">Fale com a gente</a>
-          <a class="btn btn--contorno" href="solucoes.html">Conheça as soluções</a>
-        </div>
-        <!-- Só no protótipo: compara os estilos de mascote (troca também o da seção Quem somos) -->
-        <div class="troca-mascote" role="group" aria-label="Estilo do mascote (só no protótipo)">
-          <span class="troca-mascote__rotulo">Mascote<small>só no protótipo</small></span>
-          <button type="button" data-estilo="cartoon" aria-pressed="true">Cartoon</button>
-          <button type="button" data-estilo="aquarela" aria-pressed="false">Aquarela</button>
-          <button type="button" data-estilo="3d" aria-pressed="false">3D</button>
-        </div>
       </div>
       <div class="hero__visual">
-        <img class="hero__simbolo" src="imagens/simbolo.svg" alt="" aria-hidden="true">
-        <img class="hero__mascote mascote" data-pose="apontando" src="imagens/mascote-apontando.png" width="569" height="939"
+        <img class="hero__simbolo" src="imagens/simbolo-apagado.svg" alt="" aria-hidden="true">
+        <img class="hero__mascote" src="imagens/mascote-apontando.png" width="569" height="939"
              alt="Mascote da Integre Jr.: um tigre-branco com a camisa polo azul-marinho da empresa">
         <span class="hero__chip hero__chip--1">Controle e Automação</span>
         <span class="hero__chip hero__chip--2">Materiais</span>
@@ -139,38 +126,26 @@
         <a class="card-solucao reveal" href="solucoes.html#web">
           <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg></span>
           <h3>Desenvolvimento Web</h3>
-          <p>Landing pages, sites institucionais e sistemas web sob medida.</p>
-          <span class="mais">Saiba mais</span>
         </a>
         <a class="card-solucao reveal" data-delay="1" href="solucoes.html#materiais">
           <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-microscope"/></svg></span>
           <h3>Caracterização de Materiais</h3>
-          <p>Análises para entender a composição, a estrutura e as propriedades dos seus materiais.</p>
-          <span class="mais">Saiba mais</span>
         </a>
         <a class="card-solucao reveal" data-delay="2" href="solucoes.html#processos">
           <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-workflow"/></svg></span>
           <h3>Mapeamento de Processos</h3>
-          <p>Diagnóstico e melhoria dos processos da sua empresa, do começo ao fim.</p>
-          <span class="mais">Saiba mais</span>
         </a>
         <a class="card-solucao reveal" href="solucoes.html#prototipagem">
           <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-cpu"/></svg></span>
           <h3>Prototipagem</h3>
-          <p>Do desenho técnico ao protótipo funcional, com placas e microcontroladores.</p>
-          <span class="mais">Saiba mais</span>
         </a>
         <a class="card-solucao reveal" data-delay="1" href="solucoes.html#impressao-3d">
           <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg></span>
           <h3>Impressão 3D</h3>
-          <p>Peças e produtos sob medida, impressos em 3D.</p>
-          <span class="mais">Saiba mais</span>
         </a>
         <a class="card-solucao reveal" data-delay="2" href="solucoes.html#texteis">
           <span class="card-solucao__icone"><svg class="icon" aria-hidden="true"><use href="#i-shirt"/></svg></span>
           <h3>Soluções Têxteis</h3>
-          <p>Testes laboratoriais, desenvolvimento de produto e pesquisa técnica.</p>
-          <span class="mais">Saiba mais</span>
         </a>
       </div>
 
@@ -182,12 +157,10 @@
 
   <!-- ================= QUEM SOMOS (resumo) ================= -->
   <section class="secao secao--escura quem" id="quem-somos">
-    <span class="deco-linhas deco-linhas--tr" aria-hidden="true"></span>
-    <span class="deco-pontos" style="right:1%; bottom:2%" aria-hidden="true"></span>
     <div class="container quem__grid">
       <div class="quem__visual">
         <img class="quem__simbolo" src="imagens/simbolo.svg" alt="" aria-hidden="true">
-        <img class="mascote" data-pose="cruzados" src="imagens/mascote-bracos-cruzados.png" width="475" height="939"
+        <img class="mascote" src="imagens/mascote-bracos-cruzados.png" width="475" height="939"
              alt="Mascote da Integre Jr.: um tigre-branco com a camisa polo azul-marinho da empresa">
         <span class="quem__anos" aria-hidden="true"><strong>+10</strong><span>anos de<br>história</span></span>
       </div>
@@ -257,7 +230,6 @@
 
   <!-- ================= CONTATO + REDES ================= -->
   <section class="secao secao--escura contato" id="contato">
-    <span class="deco-linhas deco-linhas--bl" aria-hidden="true"></span>
     <div class="container">
       <div class="contato__grid">
         <div class="contato__texto reveal">
@@ -346,16 +318,6 @@
     <div class="rodape__marca">
       <img src="imagens/logo-horizontal-branca.png" alt="Integre Jr." width="1280" height="399" loading="lazy">
       <p>Empresa Júnior de soluções em engenharia vinculada à UFSC Blumenau.</p>
-    </div>
-    <div>
-      <h4>Páginas</h4>
-      <nav class="rodape__links" aria-label="Rodapé">
-        <a href="index.html">Home</a>
-        <a href="sobre.html">Sobre Nós</a>
-        <a href="solucoes.html">Soluções</a>
-        <a href="eventos.html">Eventos</a>
-        <a href="index.html#contato">Contato</a>
-      </nav>
     </div>
     <div>
       <h4>Contato</h4>

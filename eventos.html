@@ -91,7 +91,6 @@
 <main>
 
   <section class="secao pagina-hero secao--escura">
-    <span class="deco-linhas deco-linhas--tr" aria-hidden="true"></span>
     <picture>
       <source media="(max-width: 960px)" srcset="imagens/simbolo-apagado.svg">
       <img class="pagina-hero__simbolo" src="imagens/simbolo.svg" alt="" aria-hidden="true">
@@ -101,12 +100,6 @@
         <span class="selo">Eventos</span>
         <h1><span class="contorno">Nossos</span> eventos</h1>
         <p class="lead">Hackathon, Integre Talks e Campanha do Agasalho: além dos projetos, a Integre movimenta a comunidade.</p>
-        <nav class="atalhos" aria-label="Nesta página">
-          <a href="#hackathon">Hackathon</a>
-          <a href="#talks">Integre Talks</a>
-          <a href="#agasalho">Campanha do Agasalho</a>
-        </nav>
-        <p class="aviso-prototipo">Página em construção: abaixo está a estrutura planejada.</p>
       </div>
     </div>
   </section>
@@ -132,6 +125,15 @@
         </div>
       </article>
 
+    </div>
+  </section>
+
+  <!-- Integre Talks: faixa com o fundo da capa (marinho com luzes) e partículas brancas que seguem o
+       mouse; a capa fica sem fundo nem sombra, misturada com a faixa -->
+  <section class="secao secao--escura secao--talks">
+    <canvas class="particulas" data-particulas aria-hidden="true"></canvas>
+    <div class="container">
+
       <article class="bloco bloco--invertido" id="talks">
         <div class="bloco__texto reveal">
           <span class="selo">Carreira e mercado</span>
@@ -149,6 +151,27 @@
           <span class="capa__pilula">Fotos e dados em breve</span>
         </div>
       </article>
+
+      <!-- Carrossel de fotos: uma por vez, com um pedaço desfocado da anterior e da próxima (main.js).
+           Para pôr uma foto de verdade, troque o <div class="carrossel__vazio">…</div> do slide por
+           <img src="imagens/talks/foto-1.jpg" alt="O que aparece na foto">. -->
+      <div class="carrossel reveal" data-carrossel role="region" aria-roledescription="carrossel" aria-label="Fotos do Integre Talks">
+        <div class="carrossel__palco" aria-live="polite">
+          <figure class="carrossel__slide" aria-roledescription="slide" aria-label="Foto 1 de 6"><div class="carrossel__vazio"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg><span>Foto 1 · em breve</span></div></figure>
+          <figure class="carrossel__slide" aria-roledescription="slide" aria-label="Foto 2 de 6"><div class="carrossel__vazio"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg><span>Foto 2 · em breve</span></div></figure>
+          <figure class="carrossel__slide" aria-roledescription="slide" aria-label="Foto 3 de 6"><div class="carrossel__vazio"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg><span>Foto 3 · em breve</span></div></figure>
+          <figure class="carrossel__slide" aria-roledescription="slide" aria-label="Foto 4 de 6"><div class="carrossel__vazio"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg><span>Foto 4 · em breve</span></div></figure>
+          <figure class="carrossel__slide" aria-roledescription="slide" aria-label="Foto 5 de 6"><div class="carrossel__vazio"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg><span>Foto 5 · em breve</span></div></figure>
+          <figure class="carrossel__slide" aria-roledescription="slide" aria-label="Foto 6 de 6"><div class="carrossel__vazio"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg><span>Foto 6 · em breve</span></div></figure>
+        </div>
+        <div class="carrossel__pontos"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="secao secao--branca">
+    <div class="container">
 
       <article class="bloco" id="agasalho">
         <div class="bloco__texto reveal">
@@ -171,7 +194,6 @@
   </section>
 
   <section class="secao secao--escura cta-final">
-    <span class="deco-linhas deco-linhas--tr" aria-hidden="true"></span>
     <div class="container">
       <div class="secao__cabeca reveal">
         <span class="selo">Parcerias</span>
@@ -190,16 +212,6 @@
     <div class="rodape__marca">
       <img src="imagens/logo-horizontal-branca.png" alt="Integre Jr." width="1280" height="399" loading="lazy">
       <p>Empresa Júnior de soluções em engenharia vinculada à UFSC Blumenau.</p>
-    </div>
-    <div>
-      <h4>Páginas</h4>
-      <nav class="rodape__links" aria-label="Rodapé">
-        <a href="index.html">Home</a>
-        <a href="sobre.html">Sobre Nós</a>
-        <a href="solucoes.html">Soluções</a>
-        <a href="eventos.html">Eventos</a>
-        <a href="index.html#contato">Contato</a>
-      </nav>
     </div>
     <div>
       <h4>Contato</h4>

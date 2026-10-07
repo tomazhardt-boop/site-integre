@@ -98,8 +98,8 @@ O roxo sobrevive só no gradiente da logo e como detalhe.
 - Fontes: os nomes reais não são conhecidos, e fonte parecida serve. Adotadas **Michroma** (larga e
   tecnológica, para selos e rótulos) e **Poppins** (títulos pesados com contorno, e corpo do texto).
 - "Desenvolvimento de Software" deixa de ser um serviço separado e entra em Desenvolvimento Web.
-- Mascote novo: tigre-branco com a polo azul-marinho da Integre, em 3 estilos (cartoon, aquarela e 3D).
-  O estilo ainda vai ser escolhido; o protótipo tem um seletor na home para comparar.
+- Mascote novo: tigre-branco com a polo azul-marinho da Integre, testado em 3 estilos (cartoon,
+  aquarela e 3D). **Escolhido o cartoon** em 06/10/2026, e o seletor de comparação saiu da home.
 
 ### Correções da identidade (01/10/2026)
 
@@ -114,5 +114,4 @@ O roxo sobrevive só no gradiente da logo e como detalhe.
 1. Endereço. O do site atual é Rua João Pessoa, 2514, Blumenau/SC.
 2. Telefone definitivo.
 3. Se o LinkedIn (`/company/integre-consultoria`) e o Facebook (`/IntegreJr`) ainda são usados.
-4. Estilo final do mascote.
-5. Textos de Caracterização de Materiais e de Mapeamento de Processos.
+4. Textos de Caracterização de Materiais e de Mapeamento de Processos.
